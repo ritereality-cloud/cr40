@@ -311,9 +311,7 @@ function generateBlogSchema({
         "@type": "ListItem",
         "position": 3,
         "name": categoryName,
-        "item": categories.length > 0
-          ? `${siteUrl}/blogs?category=${encodeURIComponent(categoryName)}`
-          : `${siteUrl}/blogs`
+        "item": `${siteUrl}/blogs`
       },
       {
         "@type": "ListItem",

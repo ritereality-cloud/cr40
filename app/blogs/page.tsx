@@ -119,16 +119,15 @@ export default async function BlogsPage({
                 All Posts
               </Link>
               {categories.map((category) => (
-                <Link
+                <span
                   key={category}
-                  href={`/blogs?category=${encodeURIComponent(category)}`}
-                  className={`flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-medium transition-all capitalize ${params.category?.toLowerCase() === category.toLowerCase()
+                  className={`flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-medium capitalize ${params.category?.toLowerCase() === category.toLowerCase()
                       ? "bg-[#002366] text-white shadow-lg shadow-blue-500/25"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      : "bg-gray-100 text-gray-600"
                     }`}
                 >
                   {category}
-                </Link>
+                </span>
               ))}
             </div>
           </div>

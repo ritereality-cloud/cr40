@@ -70,6 +70,7 @@ export function PropertyDetailClient({
       addToRecentlyViewed({
         id: property._id,
         slug: property.slug,
+        typeSlug: propertyTypeSlug,
         name: property.property_name || "Property",
         thumbnail: property.main_thumbnail || "",
         price: formatPriceToIndian(property.lowest_price) || "",
