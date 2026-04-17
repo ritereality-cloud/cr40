@@ -93,9 +93,7 @@ export function generateBlogSchema(post: any, authorName: string) {
         "@type": "ListItem",
         position: 3,
         name: categoryName,
-        item: post.category
-          ? `https://countryroof.in/blogs?category=${encodeURIComponent(categoryName)}`
-          : "https://countryroof.in/blogs"
+        item: "https://countryroof.in/blogs"
       },
       {
         "@type": "ListItem",

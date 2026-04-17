@@ -5,6 +5,7 @@ import Footer from "@/components/layout/footer"
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Heart, MapPin, Bed, Bath } from "lucide-react"
+import { getPropertyUrl } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
 interface SavedProperty {
@@ -96,7 +97,7 @@ export default function FavoritesPage() {
                   <div className="flex justify-between items-center">
                     <p className="font-bold text-sm">₹{(property.lowest_price || 0).toLocaleString()}</p>
                     <div className="flex gap-2">
-                      <Link href={`/properties/${property._id}`}>
+                      <Link href={getPropertyUrl(property as any)}>
                         <Button variant="outline" size="sm" className="text-xs bg-transparent">
                           View
                         </Button>
