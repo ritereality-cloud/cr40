@@ -17,6 +17,8 @@ interface SavedProperty {
   bathrooms: number
   address: string
   city: string
+  property_type?: string
+  slug?: string
 }
 
 export default function FavoritesPage() {
@@ -97,7 +99,7 @@ export default function FavoritesPage() {
                   <div className="flex justify-between items-center">
                     <p className="font-bold text-sm">₹{(property.lowest_price || 0).toLocaleString()}</p>
                     <div className="flex gap-2">
-                      <Link href={getPropertyUrl(property as any)}>
+                      <Link href={getPropertyUrl(property)}>
                         <Button variant="outline" size="sm" className="text-xs bg-transparent">
                           View
                         </Button>
