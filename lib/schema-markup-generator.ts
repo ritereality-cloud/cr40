@@ -158,8 +158,18 @@ export function generateOrganizationSchema() {
     "@type": "RealEstateAgent",
     name: "CountryRoof",
     url: "https://countryroof.in",
-    logo: "/logo.png",
+    logo: "https://countryroof.in/logo.png",
     description: "Premium property marketplace connecting buyers, sellers, and agents",
+    telephone: "+91-1244765940",
+    priceRange: "On Request",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "5th Floor, JMD Megapolis, 555-A, Badshahpur Sohna Rd, near Subhash Chowk, Sector 48",
+      addressLocality: "Gurugram",
+      addressRegion: "Haryana",
+      postalCode: "122001",
+      addressCountry: "IN",
+    },
     sameAs: [
       "https://www.facebook.com/countryroof",
       "https://www.twitter.com/countryroof",
@@ -167,6 +177,7 @@ export function generateOrganizationSchema() {
     ],
     contactPoint: {
       "@type": "ContactPoint",
+      telephone: "+91-1244765940",
       contactType: "Customer Service",
       availableLanguage: "en",
     },
