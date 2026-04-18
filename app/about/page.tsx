@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 import { Building2, Users, Shield, Award, CheckCircle2, Home, Briefcase, MapPin, FileText, Phone, TrendingUp, Heart, Target, Landmark, Building } from "lucide-react"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
+import { generateWebPageSchema, generateOrganizationSchema } from "@/lib/schema-markup-generator"
 
 export const metadata: Metadata = {
   title: "About Countryroof | Real Estate Advisory & Development",
@@ -61,8 +63,38 @@ const values = [
 ]
 
 export default function AboutPage() {
+  // Generate schema markup for SEO
+  const pageSchemas = generateWebPageSchema({
+    title: "About Countryroof | Real Estate Advisory & Development",
+    description: "Countryroof - Building Trust. Building Communities. Building the Future. A Gurugram-based real estate advisory committed to delivering clarity, credibility, and long-term value.",
+    url: "https://countryroof.in/about",
+    breadcrumbs: [
+      { name: "Home", url: "/" },
+      { name: "About", url: "/about" }
+    ]
+  })
+  
+  const orgSchema = generateOrganizationSchema()
+  
   return (
     <>
+      {/* Schema Markup for SEO */}
+      {Array.isArray(pageSchemas) && pageSchemas.map((schema, index) => (
+        <Script
+          key={`about-schema-${index}`}
+          id={`about-schema-${index}`}
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+      <Script
+        id="org-schema"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+      />
+      
       <Header />
       <main className="min-h-screen">
         {/* Hero Section */}

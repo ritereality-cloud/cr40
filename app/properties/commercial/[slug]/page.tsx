@@ -1,9 +1,10 @@
 import type { Metadata } from "next"
 import { notFound, redirect } from "next/navigation"
 import { MongoClient, ObjectId } from "mongodb"
-import { generatePropertySchema } from "@/lib/schema-markup-generator"
+import { generatePropertySchema, generatePropertyBreadcrumbSchema } from "@/lib/schema-markup-generator"
 import { PropertyDetailClient } from "@/components/property/property-detail-client"
 import { formatPriceToIndian } from "@/lib/utils"
+import Script from "next/script"
 
 const mongoUrl = process.env.MONGODB_URI || ""
 const baseUrl = "https://countryroof.in"
@@ -227,56 +228,28 @@ export default async function PropertyDetailPage({
   }
 
   const developer = property.developer_id ? await getDeveloper(property.developer_id) : null
-  const schemaMarkup = generatePropertySchema(property)
   const propertyTypeDisplayName = getPropertyTypeDisplayName(PROPERTY_TYPE_SLUG)
   
-  // Generate breadcrumb schema with property type
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: baseUrl
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Properties",
-        item: `${baseUrl}/properties`
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: propertyTypeDisplayName,
-        item: `${baseUrl}/properties/${PROPERTY_TYPE_SLUG}`
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
-        name: property.city || "Location",
-        item: property.city ? `${baseUrl}/properties/location/${encodeURIComponent(property.city.toLowerCase().replace(/\s+/g, '-'))}` : `${baseUrl}/properties`
-      },
-      {
-        "@type": "ListItem",
-        position: 5,
-        name: property.property_name,
-        item: `${baseUrl}/properties/${PROPERTY_TYPE_SLUG}/${property.slug || slug}`
-      }
-    ]
-  }
+  // Generate schema markup arrays
+  const propertySchemas = generatePropertySchema(property)
+  const breadcrumbSchema = generatePropertyBreadcrumbSchema(property, PROPERTY_TYPE_SLUG, propertyTypeDisplayName)
 
   return (
     <>
-      {/* Schema Markup for SEO */}
-      <script
+      {/* Schema Markup for SEO - Using Next.js Script with strategy="beforeInteractive" for head injection */}
+      {Array.isArray(propertySchemas) && propertySchemas.map((schema, index) => (
+        <Script
+          key={`property-schema-${index}`}
+          id={`property-schema-${index}`}
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+      <Script
+        id="breadcrumb-schema"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaMarkup) }}
-      />
-      <script
-        type="application/ld+json"
+        strategy="beforeInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       

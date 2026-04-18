@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { MongoClient } from "mongodb"
 import Link from "next/link"
+import Script from "next/script"
 import { Calendar, Clock, User, Tag, ChevronRight, ArrowLeft } from "lucide-react"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
@@ -169,28 +170,23 @@ export default async function BlogPostPage({
 
   return (
     <>
+      {/* Schema Markup for SEO - Using Next.js Script with strategy="beforeInteractive" for head injection */}
+      {Array.isArray(schemaMarkup) && schemaMarkup.map((schema, index) => (
+        <Script
+          key={`blog-schema-${index}`}
+          id={`blog-schema-${index}`}
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+      
       <Header />
 
       {/* Reading progress bar */}
       <ReadingProgressBar />
 
       <main className="min-h-screen">
-        {/* Schema Markup - render each schema separately for better SEO */}
-        {Array.isArray(schemaMarkup) ? (
-          schemaMarkup.map((schema, index) => (
-            <script
-              key={index}
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-            />
-          ))
-        ) : (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaMarkup) }}
-          />
-        )}
-
         {/* HERO */}
         <section className="relative w-full bg-gradient-to-b from-muted/60 to-background border-b border-border overflow-hidden">
           {heroImage && (
