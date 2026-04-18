@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "About Countryroof | Real Estate Advisory & Development",
   description:
     "Countryroof - Building Trust. Building Communities. Building the Future. A Gurugram-based real estate advisory committed to delivering clarity, credibility, and long-term value.",
+  alternates: {
+    canonical: "https://countryroof.in/about",
+  },
   openGraph: {
     title: "About Countryroof | Real Estate Advisory & Development",
     description: "Building Trust. Building Communities. Building the Future. Connect with thoughtfully selected residential and commercial opportunities.",

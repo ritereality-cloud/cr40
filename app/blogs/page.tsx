@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Blogs | CountryRoof - Real Estate Insights & Property Tips",
   description:
     "Explore expert insights on real estate investments, property buying guides, market trends, and luxury living tips from CountryRoof professionals.",
+  alternates: {
+    canonical: "https://countryroof.in/blogs",
+  },
   openGraph: {
     title: "Blogs | CountryRoof - Real Estate Insights",
     description: "Expert real estate insights and property investment tips from CountryRoof professionals.",
