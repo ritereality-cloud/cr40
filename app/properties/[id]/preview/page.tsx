@@ -4,13 +4,12 @@ import { useEffect, useState } from "react";
 
 interface Property {
   property_name: string;
-  short_description: string;
+  about_project?: string;
   main_thumbnail: string;
   city: string;
   state: string;
   price_range: string;
   property_type: string;
-  long_description: string;
 }
 import { useParams } from "next/navigation";
 
@@ -50,7 +49,6 @@ export default function PropertyPreviewPage() {
   return (
     <div className="max-w-4xl mx-auto py-8">
       <h1 className="text-3xl font-bold">{property.property_name}</h1>
-      <p className="text-muted-foreground">{property.short_description}</p>
       <div className="mt-6">
         <img src={property.main_thumbnail} alt={property.property_name} className="w-full rounded-lg" />
       </div>
@@ -58,7 +56,9 @@ export default function PropertyPreviewPage() {
         <p><strong>Location:</strong> {property.city}, {property.state}</p>
         <p><strong>Price:</strong> {property.price_range}</p>
         <p><strong>Type:</strong> {property.property_type}</p>
-        <p><strong>Description:</strong> {property.long_description}</p>
+        {property.about_project && (
+          <p><strong>About:</strong> {property.about_project}</p>
+        )}
       </div>
     </div>
   );

@@ -411,28 +411,6 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
         </div>
       </div>
 
-      <div>
-        <label className="text-xs font-medium text-muted-foreground block mb-1.5">Short Description</label>
-        <textarea
-          value={formData.short_description}
-          onChange={(e) => onChange("short_description", e.target.value)}
-          placeholder="Brief description (50-150 characters)"
-          maxLength={150}
-          className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring resize-none h-20"
-        />
-        <p className="text-xs text-muted-foreground mt-1">{formData.short_description.length}/150</p>
-      </div>
-
-      <div>
-        <label className="text-xs font-medium text-muted-foreground block mb-1.5">Long Description</label>
-        <textarea
-          value={formData.long_description}
-          onChange={(e) => onChange("long_description", e.target.value)}
-          placeholder="Detailed property description"
-          className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring resize-none h-28"
-        />
-      </div>
-
       {/* About Project Section */}
       <div className="border-t border-border pt-4 mt-4">
         <h4 className="text-sm font-semibold mb-3">About Project</h4>

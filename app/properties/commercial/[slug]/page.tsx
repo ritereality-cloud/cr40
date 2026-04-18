@@ -43,8 +43,6 @@ interface Property {
   property_name: string
   property_type?: string
   listing_type?: string
-  short_description?: string
-  long_description?: string
   about_project?: string
   meta_title?: string
   meta_description?: string
@@ -155,7 +153,7 @@ export async function generateMetadata({
   const propertyTypeSlug = getPropertyTypeSlug(property.property_type || "")
   const title = property.meta_title || `${property.property_name} | ${property.city} | CountryRoof`
   const description = property.meta_description || 
-    property.short_description || 
+    property.about_project?.substring(0, 160) || 
     `${property.property_name} - ${property.property_type || "Property"} in ${property.city}, ${property.state}. ${property.bedrooms ? `${property.bedrooms} BHK` : ""} ${property.area_sqft ? `${property.area_sqft} sqft` : ""}. Price: ${formatPriceToIndian(property.lowest_price)}${property.max_price ? ` - ${formatPriceToIndian(property.max_price)}` : ""}`
   
   const canonicalUrl = `${baseUrl}/properties/${propertyTypeSlug}/${property.slug || slug}`

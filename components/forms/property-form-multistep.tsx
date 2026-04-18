@@ -30,8 +30,6 @@ export default function PropertyFormMultiStep({
     property_type: "apartment",
     listing_type: "new",
     property_category: "residential",
-    short_description: "",
-    long_description: "",
     lowest_price: "",
     max_price: "",
     bedrooms: "",

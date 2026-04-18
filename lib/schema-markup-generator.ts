@@ -158,7 +158,7 @@ export function generatePropertySchema(property: any) {
     "@type": "RealEstateListing",
     "@id": `${propertyUrl}#listing`,
     name: property.property_name,
-    description: property.long_description || property.short_description || `${property.property_name} - Premium property in ${property.city}`,
+    description: property.about_project || `${property.property_name} - Premium property in ${property.city}`,
     url: propertyUrl,
     datePosted: property.createdAt ? new Date(property.createdAt).toISOString() : new Date().toISOString(),
     image: Array.isArray(property.multiple_images) && property.multiple_images.length > 0
@@ -198,7 +198,7 @@ export function generatePropertySchema(property: any) {
     "@type": "Product",
     "@id": `${propertyUrl}#product`,
     name: property.property_name,
-    description: property.short_description || property.long_description || `${property.property_name} in ${property.city}`,
+    description: property.about_project || `${property.property_name} in ${property.city}`,
     image: imageUrl,
     brand: {
       "@type": "Brand",
@@ -228,7 +228,7 @@ export function generatePropertySchema(property: any) {
     "@type": property.property_type?.toLowerCase().includes("commercial") ? "LocalBusiness" : "Residence",
     "@id": `${propertyUrl}#residence`,
     name: property.property_name,
-    description: property.long_description || property.short_description,
+    description: property.about_project,
     image: Array.isArray(property.multiple_images) && property.multiple_images.length > 0
       ? [imageUrl, ...property.multiple_images.slice(0, 4)]
       : imageUrl,

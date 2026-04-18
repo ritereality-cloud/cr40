@@ -209,7 +209,7 @@ export function PropertyDetailClient({
       </div>
 
       {/* Section 2: About Section */}
-      {(property.about_project || property.short_description || property.long_description) && (
+      {property.about_project && (
         <section className="py-8 md:py-12">
           <div className="max-w-6xl mx-auto px-4">
             <div className="flex items-center gap-2 mb-5">
@@ -226,20 +226,9 @@ export function PropertyDetailClient({
                   {property.about_subheading}
                 </h3>
               )}
-              {property.about_project ? (
-                <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {property.about_project}
-                </p>
-              ) : (
-                <>
-                  {property.short_description && (
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">{property.short_description}</p>
-                  )}
-                  {property.long_description && (
-                    <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{property.long_description}</p>
-                  )}
-                </>
-              )}
+              <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
+                {property.about_project}
+              </p>
             </div>
           </div>
         </section>
