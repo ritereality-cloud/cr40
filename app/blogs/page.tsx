@@ -107,6 +107,8 @@ export default async function BlogsPage({
     <>
       <Header />
       <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        {/* SEO H1 - Screen reader accessible */}
+        <h1 className="sr-only">Real Estate Blogs - Property Tips &amp; Market Insights | CountryRoof</h1>
 
         {/* Category Filter */}
         <section className="w-full py-6 px-4 bg-white border-b border-gray-100 sticky top-0 z-40">

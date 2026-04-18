@@ -192,6 +192,45 @@ const nextConfig = {
         destination: "https://countryroof.in/:path+",
         permanent: true,
       },
+      // 2. Legacy property detail URLs - redirect to new format
+      // Format: /property/details/:id/:slug -> /properties/residential/:slug
+      {
+        source: "/property/details/22/m3m-mansion",
+        destination: "/properties/residential/m3m-mansion",
+        permanent: true,
+      },
+      {
+        source: "/property/details/41/m3m-altitude",
+        destination: "/properties/residential/m3m-altitude",
+        permanent: true,
+      },
+      {
+        source: "/property/details/57/consicent--parq",
+        destination: "/properties/residential/conscient-parq",
+        permanent: true,
+      },
+      {
+        source: "/property/details/72/ganga-anantam",
+        destination: "/properties/residential/ganga-anantam",
+        permanent: true,
+      },
+      {
+        source: "/property/details/73/emaar-urban-ascent",
+        destination: "/properties/residential/emaar-urban-ascent",
+        permanent: true,
+      },
+      // Catch-all for any other old property detail URLs
+      {
+        source: "/property/details/:id/:slug",
+        destination: "/properties/residential/:slug",
+        permanent: true,
+      },
+      // 3. Legacy state detail URLs - redirect to properties
+      {
+        source: "/state/details/:id",
+        destination: "/properties",
+        permanent: true,
+      },
     ]
   },
 }
